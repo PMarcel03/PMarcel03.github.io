@@ -11,7 +11,7 @@ body {
   font-family: "Orbitron", Helvetica, sans-serif;
   margin: auto;
   background: #0a0a0a;
-  background-image: url("svg.svg");
+  background-image: url("../Images/svg.svg");
   color: #fff;
   min-height: 100vh; /* Add this */
   display: flex; /* Add this */
@@ -132,7 +132,7 @@ nav ul li a:hover {
 
   /* Adjust body margins on mobile */
   body {
-    margin: 10px;
+    margin: 10px 0px 0px 0px;
   }
 }
 
@@ -146,6 +146,13 @@ nav ul li a:hover {
   );
 }
 
+@media (max-width: 768px) {
+  .hero {
+    margin-left: 10px;
+    margin: 10px;
+  }
+}
+
 .hero h1 {
   padding: 20px;
 }
@@ -153,6 +160,7 @@ nav ul li a:hover {
 .hero p {
   font-size: 1.5rem;
   word-wrap: break-word;
+  max-width: clamp(45ch, 90vw, 75ch);
 }
 
 .hero h2 {
@@ -244,7 +252,7 @@ nav ul li a:hover {
 .about p {
   line-height: 2;
   padding: 20px;
-  max-width: 800px; /* Adjust this value to your preference */
+  max-width: clamp(45ch, 90vw, 75ch);
   margin: 0 auto; /* Centers it horizontally */
 }
 
