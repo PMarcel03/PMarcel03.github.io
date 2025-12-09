@@ -11,7 +11,7 @@ body {
   font-family: "Orbitron", Helvetica, sans-serif;
   margin: auto;
   background: #0a0a0a;
-  background-image: url("../Images/svg.svg");
+  background-image: url("svg.svg");
   color: #fff;
   min-height: 100vh; 
   display: flex; 
@@ -453,6 +453,7 @@ footer {
   margin-top: auto;
   width: 100%;
 }
+
 
 
 
