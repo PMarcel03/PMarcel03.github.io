@@ -1,0 +1,12 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <pattern patternUnits="userSpaceOnUse" height="50" width="50" id="grid">
+   <path style="--darkreader-inline-stroke: var(--darkreader-text-a855f7, #a957f7);" id="svg_1" opacity="0.3" stroke="#a855f7" fill="none" d="m50,0l-50,0l0,50"/>
+  </pattern>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_2" fill="#0a0a0a" height="100%" width="100%"/>
+  <rect id="svg_3" fill="url(#grid)" height="100%" width="100%"/>
+ </g>
+</svg>
