@@ -13,9 +13,9 @@ body {
   background: #0a0a0a;
   background-image: url("../Images/svg.svg");
   color: #fff;
-  min-height: 100vh; /* Add this */
-  display: flex; /* Add this */
-  flex-direction: column; /* Add this */
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
 }
 
 main {
@@ -86,7 +86,6 @@ nav ul li a:hover {
 
 /* Mobile styles ONLY */
 @media (max-width: 768px) {
-  /* SHOW hamburger button on mobile */
   nav {
     justify-content: space-between;
     padding: 0 20px;
@@ -96,7 +95,7 @@ nav ul li a:hover {
     position: absolute;
     right: 5%;
     z-index: 1000;
-    margin-left: 20px; /* Add this */
+    margin-left: 20px; 
   }
 
   /* Hide nav menu by default on mobile */
@@ -253,7 +252,7 @@ nav ul li a:hover {
   line-height: 2;
   padding: 20px;
   max-width: clamp(45ch, 90vw, 75ch);
-  margin: 0 auto; /* Centers it horizontally */
+  margin: 0 auto;
 }
 
 /* Skillset Section Ruleset */
@@ -277,7 +276,7 @@ nav ul li a:hover {
 
 .skill-item {
   text-align: center;
-  background: linear-gradient(135deg, #a855f7, #7c3aed); /* Border color */
+  background: linear-gradient(135deg, #a855f7, #7c3aed); 
   padding: 3px;
   min-width: 8rem;
   min-height: 80px;
@@ -449,3 +448,4 @@ footer {
   margin-top: auto;
   width: 100%;
 }
+
