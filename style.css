@@ -18,6 +18,10 @@ body {
   flex-direction: column; 
 }
 
+body p {
+  font-weight: 500;
+}
+
 main {
   flex: 1;
 }
@@ -448,4 +452,5 @@ footer {
   margin-top: auto;
   width: 100%;
 }
+
 
