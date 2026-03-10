@@ -127,12 +127,96 @@
                   <p class="font-zen-dots text-[10px] text-white">CSS</p>
                 </div>
               </div>
+              <!--JS Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg"
+                    alt="JavaScript"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">JavaScript</p>
+                </div>
+              </div>
+              <!--Python Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/python/python-icon.svg"
+                    alt="Python"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">Python</p>
+                </div>
+              </div>
+              <!--React Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg"
+                    alt="React"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">React</p>
+                </div>
+              </div>
+              <!--Vue Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/vuejs/vuejs-icon.svg"
+                    alt="Vue"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">Vue</p>
+                </div>
+              </div>
+              <!--Astro Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Astro.svg"
+                    alt="Astro"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">Astr</p>
+                </div>
+              </div>
+              <!--SQL Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sql_data_base_with_logo.svg"
+                    alt="SQL"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">SQL</p>
+                </div>
+              </div>
+              <!--MongoDB Hexagon-->
+              <div class="hexagon-container group">
+                <div class="hexagon-inner">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg"
+                    alt="MongoDB"
+                    class="w-10 h-10 mb-1 transition-transform group-hover:scale-110"
+                  />
+                  <p class="font-zen-dots text-[10px] text-white">MongoDB</p>
+                </div>
+              </div>
             </div>
           </section>
         </div>
         <div class="col-span-1 bento-card">
           <section class="work">
-            <!-- Work -->
+            <section class="work">
+              <h2 class="font-zen-dots text-2xl text-rum mb-5">Work</h2>
+              <div id="pinned-feed" class="space-y-4">
+                <p class="font-coda text-white animate-pulse">
+                  Loading Projects...
+                </p>
+              </div>
+            </section>
           </section>
         </div>
       </div>
@@ -194,6 +278,42 @@
         }
       }
       getRecentProjects();
+
+      async function getPinnedProjects() {
+        const feed = document.getElementById("pinned-feed");
+
+        try {
+          const response = await fetch("/pinned.json");
+          if (!response.ok) throw new Error("Not found");
+          const repos = await response.json();
+
+          feed.innerHTML = "";
+
+          repos.forEach((repo) => {
+            const card = `
+        <div class="group p-4 rounded-xl bg-midnight/50 border border-dusk hover:border-electric-purple transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <h3 class="font-zen-dots text-sm text-white group-hover:text-electric-purple">
+              <a href="${repo.url}" target="_blank">${repo.name}</a>
+            </h3>
+            <i class="fa-solid fa-arrow-up-right-from-square text-rum text-[10px] group-hover:text-electric-purple transition-colors shrink-0 ml-2 mt-1"></i>
+          </div>
+          <p class="font-coda text-xs text-rum mt-2 line-clamp-2">
+            ${repo.description || "No description provided."}
+          </p>
+          <div class="flex gap-3 mt-3">
+            <span class="text-[10px] text-emerald font-bold">● ${repo.primaryLanguage?.name || "Code"}</span>
+          </div>
+        </div>
+      `;
+            feed.insertAdjacentHTML("beforeend", card);
+          });
+        } catch (err) {
+          feed.innerHTML = `<p class="font-coda text-sm text-rum text-center">Visit my <a href="https://github.com/PMarcel03" class="underline">GitHub</a> to see my projects.</p>`;
+        }
+      }
+
+      getPinnedProjects();
     </script>
   </body>
 </html>
