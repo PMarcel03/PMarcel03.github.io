@@ -1,0 +1,113 @@
+/* Imports */
+@import url("https://fonts.googleapis.com/css2?family=Coda:wght@400;800&family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap");
+@import "tailwindcss";
+
+/* Theme */
+@theme {
+  /* -- Color Configuration -- */
+  --color-*: initial;
+  /* Background */
+  --color-midnight: #1a1025;
+  /* Card Background */
+  --color-twilight: #231535;
+  /* Card Border */
+  --color-dusk: #3a2550;
+  /* Accent */
+  --color-electric-purple: #9b5cf6;
+  --color-purple-heart: #6d3fb5;
+  /* Text Colors */
+  --color-lavender: #e8e0f0;
+  --color-rum: #8b7aa0;
+  --color-white: #fff;
+  /* Status Icon*/
+  --color-emerald: #22c55e;
+  /* -- Font Configuration -- */
+  --font-space-grotesk: "Space grotesk";
+  --font-zen-dots: "Zen dots";
+  --font-coda: "Coda";
+  /* --Animations -- */
+  --animate-shine-sweep: shine-animation 1.2s ease-in-out;
+  --animate-glow-pulse: glow-pulse 2s infinite ease-in-out;
+  /* -- Clip Path -- */
+  --clip-hexagon: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+body {
+  background-color: #1a1025;
+}
+
+/* Animations */
+@keyframes shine-animation {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px var(--color-electric-purple));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px var(--color-electric-purple));
+  }
+}
+
+/* Elements */
+.hexagon-container {
+  position: relative;
+  width: 120px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px rgba(191, 0, 255, 0.3));
+}
+
+.hexagon-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-electric-purple);
+  clip-path: var(--clip-hexagon);
+  z-index: -1;
+}
+
+.hexagon-inner {
+  position: absolute;
+  inset: 2px;
+  background-color: var(--color-twilight);
+  clip-path: var(--clip-hexagon);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.hexagon-container:hover .hexagon-inner {
+  background-color: rgba(191, 0, 255, 0.2);
+}
+
+.bento-card {
+  background-color: var(--color-twilight);
+  border: 2px solid var(--color-dusk);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  margin: 2rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+  border-color: var(--color-electric-purple);
+  box-shadow: 0 0 20px rgba(191, 0, 255, 0.15);
+  transform: translateY(-2px);
+}
