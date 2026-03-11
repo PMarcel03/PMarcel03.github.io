@@ -14,6 +14,45 @@
     />
   </head>
   <body>
+    <!--Splash Screen-->
+    <div
+      id="splash"
+      class="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-[#0d0714] transition-[opacity, visibility] duration-600 ease-in-out"
+    >
+      <div
+        class="w-[min(640px, 90vw)] overflow-hidden rounded-xl border border-dusk bg-[#130d1e] shadow-[0_0_60px_rgba(155, 92, 246, 0.2), 0_0_120px_rgba(155,92,246,0.05)]"
+      >
+        <!--Title Bar-->
+        <div
+          class="flex items-center gap-2 border-b border-dusk bg-[#1e1230] px-4 py-2.5"
+        >
+          <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+          <span class="font-coda text-[0.7rem] text-rum ml-2"
+            >marcel@portfolio ~ zsh</span
+          >
+        </div>
+        <!--Terminal Body-->
+        <div
+          id="terminal-body"
+          class="min-h-55 px-7 py-6 font-mono text-[0.85rem] leading-[1.8]"
+        ></div>
+        <!--Progress Bar-->
+        <div class="h-0.5 bg-[#1e1230]">
+          <div
+            id="progress-fill"
+            class="h-full origin-left scale-x-0 bg-linear-to-r from-purple-heart to-electric-purple"
+          ></div>
+        </div>
+      </div>
+      <p
+        id="skip-hint"
+        class="mt-6 cursor-pointer select-none font-coda text-[0.7rem] tracking-widest text-dusk opacity-0 transition-colors duration-200 hover:text-rum animate-[fade-in-hint_1s_1s_forwards]"
+      >
+        PRESS ANY KEY OR CLICK TO SKIP
+      </p>
+    </div>
     <main>
       <!--Bento Grid Line 1-->
       <div class="grid grid-cols-3 gap-3">
@@ -71,7 +110,7 @@
               <img
                 src="/Images/ProfilePicture.jpg"
                 alt="Profile Picture"
-                class="rounded-full w-56 aspect-square object-cover border-2 border-dusk drop-shadow-md"
+                class="rounded-full w-56 aspect-square object-cover border-2 border-dusk drop-shadow-md drop-shadow-electric-purple"
               />
               <p class="font-coda text-xl text-white">
                 I'm a software engineering graduate at Toi Ohomai Institute of
@@ -83,6 +122,37 @@
                 always eager to learn new technologies and take on challenging
                 projects.
               </p>
+            </div>
+            <hr class="border-dusk my-5" />
+            <!--Education Badge-->
+            <div
+              class="edu-badge relative flex items-center gap-4 overflow-hidden rounded-[0.85rem] border border-electric-purple/35 bg-gradient-to-br from-electric-purple/12 to-purple-heart/6 px-5 py-4"
+            >
+              <div
+                class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-xl border border-electric-purple/40 bg-electric-purple/15"
+              >
+                <i
+                  class="fa-solid fa-graduation-cap text-electric-purple text-base"
+                ></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-zen-dots text-xs text-white tracking-wide">
+                  Software Engineering
+                </p>
+                <p class="font-coda text-xs text-rum mt-1">
+                  Toi Ohomai Institute of Technology · Nov 2025
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-1.5 rounded-full border border-electric-purple/40 px-2.5 py-1 whitespace-nowrap"
+              >
+                <i
+                  class="fa-solid fa-circle text-emerald animate-pulse text-[5px]"
+                ></i>
+                <span class="font-zen-dots text-[10px] text-electric-purple"
+                  >Graduate</span
+                >
+              </div>
             </div>
           </section>
         </div>
@@ -242,6 +312,85 @@
       </div>
     </main>
     <script>
+      //Terminal Splash
+      const TOTAL_MS = 4200;
+      const lines = [
+        { delay: 0, type: "cmd", text: "whoami" },
+        {
+          delay: 400,
+          type: "output",
+          text: "marcel-prakash",
+          cls: "text-white font-bold",
+        },
+        { delay: 800, type: "cmd", text: "cat ./role.txt" },
+        {
+          delay: 1200,
+          type: "output",
+          text: "Front End Developer",
+          cls: "text-electric-purple",
+        },
+        { delay: 1600, type: "cmd", text: "ls ./skills" },
+        {
+          delay: 2000,
+          type: "output",
+          text: "HTML  CSS  JS  Python  React  Vue  Astro  SQL  MongoDB",
+          cls: "text-rum",
+        },
+        { delay: 2500, type: "cmd", text: "node ./portfolio.js" },
+        {
+          delay: 2900,
+          type: "output",
+          text: "✓ Portfolio initialised",
+          cls: "text-emerald",
+        },
+        { delay: 3300, type: "output", text: "→ Loading...", cls: "text-rum" },
+      ];
+
+      const termBody = document.getElementById("terminal-body");
+      const progressFill = document.getElementById("progress-fill");
+      let dismissed = false;
+
+      // Kick off progress bar animation
+      requestAnimationFrame(() => {
+        progressFill.style.transition = `transform ${TOTAL_MS}ms linear`;
+        progressFill.style.transform = "scaleX(1)";
+      });
+
+      function addLine({ type, text, cls }) {
+        const row = document.createElement("div");
+        row.className = "flex gap-2";
+        if (type === "cmd") {
+          row.innerHTML = `<span class="text-electric-purple select-none shrink-0">marcel@portfolio ~ %</span><span class="text-white font-bold">&nbsp;${text}</span>`;
+        } else {
+          row.innerHTML = `<span class="${cls || "text-[#c4b8d4]"}">${text}</span>`;
+        }
+        termBody.appendChild(row);
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+
+      lines.forEach((l) =>
+        setTimeout(() => {
+          if (!dismissed) addLine(l);
+        }, l.delay),
+      );
+
+      const autoTimer = setTimeout(dismissSplash, TOTAL_MS);
+
+      function dismissSplash() {
+        if (dismissed) return;
+        dismissed = true;
+        clearTimeout(autoTimer);
+        const splash = document.getElementById("splash");
+        splash.style.opacity = "0";
+        splash.style.visibility = "hidden";
+        setTimeout(() => splash.remove(), 600);
+      }
+
+      document.addEventListener("keydown", dismissSplash, { once: true });
+      document
+        .getElementById("splash")
+        .addEventListener("click", dismissSplash);
+      //Get GH Projects
       async function getRecentProjects() {
         const username = "PMarcel03";
         const feed = document.getElementById("github-feed");

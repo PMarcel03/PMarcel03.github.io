@@ -61,6 +61,12 @@ body {
   }
 }
 
+@keyframes fade-in-hint {
+  to {
+    opacity: 1;
+  }
+}
+
 /* Elements */
 .hexagon-container {
   position: relative;
@@ -110,4 +116,19 @@ body {
   border-color: var(--color-electric-purple);
   box-shadow: 0 0 20px rgba(191, 0, 255, 0.15);
   transform: translateY(-2px);
+}
+
+.edu-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-electric-purple),
+    transparent
+  );
 }
