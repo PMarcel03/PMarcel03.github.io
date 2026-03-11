@@ -34,7 +34,7 @@
     <!--Splash Screen-->
     <div
       id="splash"
-      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0d0714] transition-[opacity,visibility] duration-600 ease-in-out"
+      class="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-[#0d0714] transition-[opacity,visibility] duration-600 ease-in-out"
     >
       <div
         class="w-[min(640px,90vw)] overflow-hidden rounded-xl border border-dusk bg-[#130d1e]"
@@ -150,10 +150,10 @@
             <hr class="border-dusk my-5" />
             <!--Education Badge-->
             <div
-              class="edu-badge relative flex items-center gap-4 overflow-hidden rounded-[0.85rem] border border-electric-purple/35 bg-gradient-to-br from-electric-purple/12 to-purple-heart/6 px-5 py-4"
+              class="edu-badge relative flex items-center gap-4 overflow-hidden rounded-[0.85rem] border border-electric-purple/35 bg-linear-to-br from-electric-purple/12 to-purple-heart/6 px-5 py-4"
             >
               <div
-                class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-xl border border-electric-purple/40 bg-electric-purple/15"
+                class="flex h-10.5 w-10.5 shrink-0 items-center justify-center rounded-xl border border-electric-purple/40 bg-electric-purple/15"
               >
                 <i
                   class="fa-solid fa-graduation-cap text-electric-purple text-base"
@@ -454,13 +454,13 @@
             );
             const repoHTML = `
               <div class="group p-4 rounded-xl bg-midnight/50 border border-dusk hover:border-electric-purple transition-all duration-300">
-                <div class="flex justify-between items-start">
-                  <h3 class="font-zen-dots text-sm text-white group-hover:text-electric-purple">
+                <div class="flex justify-between items-start gap-2">
+                  <h3 class="font-zen-dots text-sm text-white group-hover:text-electric-purple min-w-0 truncate">
                     <a href="${repo.html_url}" target="_blank">${repo.name}</a>
                   </h3>
-                  <span class="text-[10px] font-coda text-rum uppercase tracking-widest">${lastUpdated}</span>
+                  <span class="text-[10px] font-coda text-rum uppercase tracking-widest shrink-0">${lastUpdated}</span>
                 </div>
-                <p class="font-coda text-xs text-rum mt-2 line-clamp-2">
+                <p class="font-coda text-xs text-rum mt-2 line-clamp-2 break-words">
                   ${repo.description || "Continuous development and exploration."}
                 </p>
                 <div class="flex gap-3 mt-3">
