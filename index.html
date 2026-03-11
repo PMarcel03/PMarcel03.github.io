@@ -446,12 +446,33 @@
           );
           if (!response.ok) throw new Error("Limit reached");
           const repos = await response.json();
-          feed.innerHTML = "";
-          repos.forEach((repo) => {
+
+          feed.innerHTML = `
+            <div class="group p-4 rounded-xl bg-midnight/50 border border-electric-purple/40 hover:border-electric-purple transition-all duration-300">
+              <div class="flex justify-between items-start gap-2">
+                <h3 class="font-zen-dots text-sm text-electric-purple min-w-0 truncate">
+                  <a href="https://github.com/Gender-Dynamix/gd-website" target="_blank">Gender Dynamix Websiite</a>
+                </h3>
+                <span class="text-[10px] font-coda text-emerald uppercase tracking-widest shrink-0">Active</span>
+              </div>
+              <p class="font-coda text-xs text-rum mt-2 line-clamp-2 break-words">
+                This is the website for Gender Dynamix Aotearoa, a support organisation dedicated to serving transgender and nonbinary individuals in Tauranga and the wider Bay of Plenty region of New Zealand.
+              </p>
+              <div class="flex gap-3 mt-3">
+                <span class="text-[10px] text-emerald font-bold">● Astro</span>
+              </div>
+            </div>`;
+
+          repos.slice(0, 2).forEach((repo) => {
+            //Formatting the date to be cleaner
             const lastUpdated = new Date(repo.pushed_at).toLocaleDateString(
               "en-NZ",
-              { month: "short", day: "numeric" },
+              {
+                month: "short",
+                day: "numeric",
+              },
             );
+
             const repoHTML = `
               <div class="group p-4 rounded-xl bg-midnight/50 border border-dusk hover:border-electric-purple transition-all duration-300">
                 <div class="flex justify-between items-start gap-2">
